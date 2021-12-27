@@ -27,6 +27,7 @@ const FEED_QUERY = gql`
 
 export default function Feed() {
   const { data, loading } = useQuery(FEED_QUERY);
+  console.log(data);
   const renderPhoto = ({ item: photo }) => {
     return <Photo {...photo} />;
   };
