@@ -1,26 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+<<<<<<< HEAD
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+=======
+>>>>>>> parent of b3d569c... 15.7 Photo part Two
 import styled from "styled-components/native";
-import { Image, useWindowDimensions } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { useWindowDimensions } from "react-native";
 
 const Container = styled.View``;
-const Header = styled.TouchableOpacity`
-  padding: 10px;
-  flex-direction: row;
-  align-items: center;
-`;
-const UserAvatar = styled.Image`
-  margin-right: 10px;
-  width: 25px;
-  height: 25px;
-  border-radius: 12.5;
-`;
+const Header = styled.View``;
+const UserAvatar = styled.Image``;
 const Username = styled.Text`
   color: white;
-  font-weight: 600;
 `;
 const File = styled.Image``;
 const Actions = styled.View`
@@ -47,28 +39,21 @@ const ExtraContainer = styled.View`
 `;
 
 function Photo({ id, user, caption, file, isLiked, likes }) {
-  const navigation = useNavigation();
   const { width, height } = useWindowDimensions();
-  const [imageHeight, setImageHeight] = useState(height - 450);
-  useEffect(() => {
-    Image.getSize(file, (width, height) => {
-      setImageHeight(height / 3);
-    });
-  }, [file]);
   return (
     <Container>
-      <Header onPress={() => navigation.navigate("Profile")}>
-        <UserAvatar resizeMode="cover" source={{ uri: user.avatar }} />
+      <Header>
+        <UserAvatar />
         <Username>{user.username}</Username>
       </Header>
       <File
-        resizeMode="cover"
         style={{
           width,
-          height: imageHeight,
+          height: height - 500,
         }}
         source={{ uri: file }}
       />
+<<<<<<< HEAD
       <ExtraContainer>
         <Actions>
           <Action>
@@ -93,6 +78,17 @@ function Photo({ id, user, caption, file, isLiked, likes }) {
           <CaptionText>{caption}</CaptionText>
         </Caption>
       </ExtraContainer>
+=======
+      <Actions>
+        <Action />
+        <Action />
+      </Actions>
+      <Likes>{likes === 1 ? "1 like" : `${likes} likes`}</Likes>
+      <Caption>
+        <Username>{user.username}</Username>
+        <CaptionText>{caption}</CaptionText>
+      </Caption>
+>>>>>>> parent of b3d569c... 15.7 Photo part Two
     </Container>
   );
 }
