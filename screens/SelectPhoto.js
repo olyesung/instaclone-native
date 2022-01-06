@@ -105,7 +105,7 @@ export default function SelectPhoto({ navigation }) {
   );
   return (
     <Container>
-      <StatusBar />
+      <StatusBar hidden={false} />
       <Top>
         {chosenPhoto !== "" ? (
           <Image

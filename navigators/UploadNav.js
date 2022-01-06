@@ -23,8 +23,6 @@ export default function UploadNav() {
         },
       }}
     >
-      <Tab.Screen name="Take" component={TakePhoto} />
-
       <Tab.Screen name="RootSelect">
         {() => (
           <Stack.Navigator
@@ -48,6 +46,7 @@ export default function UploadNav() {
           </Stack.Navigator>
         )}
       </Tab.Screen>
+      <Tab.Screen name="Take" component={TakePhoto} />
     </Tab.Navigator>
   );
 }
