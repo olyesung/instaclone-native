@@ -49,24 +49,31 @@ export default function SelectPhoto({ navigation }) {
     setChosenPhoto(photos[0]?.uri);
   };
   const getPermissions = async () => {
-    const { accessPrivileges, canAskAgain } =
-      await MediaLibrary.getPermissionsAsync();
-    if (accessPrivileges === "none" && canAskAgain) {
-      const { accessPrivileges } = await MediaLibrary.requestPermissionsAsync();
-      if (accessPrivileges !== "none") {
+    const { status, canAskAgain } = await MediaLibrary.getPermissionsAsync();
+    if (status === "undetermined" && canAskAgain) {
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+      if (status !== "undetermined") {
         setOk(true);
         getPhotos();
       }
-    } else if (accessPrivileges !== "none") {
+    } else if (status !== "undetermined") {
       setOk(true);
       getPhotos();
     }
   };
+
   const HeaderRight = () => (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate("UploadForm", {
+          file: chosenPhoto,
+        })
+      }
+    >
       <HeaderRightText>Next</HeaderRightText>
     </TouchableOpacity>
   );
+
   useEffect(() => {
     getPermissions();
   }, []);
@@ -74,7 +81,7 @@ export default function SelectPhoto({ navigation }) {
     navigation.setOptions({
       headerRight: HeaderRight,
     });
-  }, []);
+  }, [chosenPhoto]);
   const numColumns = 4;
   const { width } = useWindowDimensions();
   const choosePhoto = (uri) => {
