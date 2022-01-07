@@ -28,7 +28,7 @@ export const logUserOut = async () => {
 };
 
 const uploadHttpLink = createUploadLink({
-  uri: "https://great-robin-61.loca.lt/graphql",
+  uri: "https://chilly-robin-47.loca.lt/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
