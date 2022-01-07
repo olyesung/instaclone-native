@@ -23,7 +23,7 @@ export default function Rooms() {
   return (
     <ScreenLayout loading={loading}>
       <FlatList
-        ItemSeparatorComponent={
+        ItemSeparatorComponent={() => (
           <View
             style={{
               width: "100%",
@@ -31,7 +31,7 @@ export default function Rooms() {
               backgroundColor: "rgba(255, 255, 255, 0.2)",
             }}
           ></View>
-        }
+        )}
         style={{ width: "100%" }}
         data={data?.seeRooms}
         keyExtractor={(room) => "" + room.id}
